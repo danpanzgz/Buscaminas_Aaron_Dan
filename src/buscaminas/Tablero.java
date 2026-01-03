@@ -3,7 +3,6 @@
  */
 package buscaminas;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Tablero {
@@ -28,7 +27,8 @@ public class Tablero {
 	}
 
 	/**
-	 * 
+	 * Metodo inicializar tablero, con minas aleatorias y llamando a metodo para
+	 * contar minas adyacentes
 	 */
 	public void inicializarTablero() {
 		Random aleatorio = new Random();
@@ -60,6 +60,11 @@ public class Tablero {
 		}
 	}
 
+	/**
+	 * @param fila
+	 * @param columna metodo para contar minas adyacentes de cada casilla
+	 * @return
+	 */
 	private int contarMinasAlrededor(int fila, int columna) {
 		int contador = 0;
 
