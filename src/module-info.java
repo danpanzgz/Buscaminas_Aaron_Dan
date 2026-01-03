@@ -4,6 +4,5 @@
 /**
  * 
  */
-module Buscaminas_Dan_Aaron {
-	requires teclado;
+module Buscaminas_Aaron_Dan {
 }
