@@ -120,6 +120,10 @@ public class Juego {
 		System.out.println(tablero.toString());
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private boolean comprobarVictoria() {
 		for (int i = 0; i < tablero.getNumFilas(); i++) {
 			for (int j = 0; j < tablero.getNumColumnas(); j++) {
@@ -138,6 +142,10 @@ public class Juego {
 		return tablero.toString();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	// getter del tablero por si se necesita en principal
 	public Tablero getTablero() {
 		return tablero;
