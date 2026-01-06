@@ -1,0 +1,21 @@
+# Carpetas de compilación
+/bin/
+/out/
+
+# Configuración de Eclipse
+.project
+.classpath
+.settings/
+
+# Archivos temporales o de logs
+*.log
+*.tmp
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Otros archivos de IDE (opcional)
+/*.iml
+/.idea/
