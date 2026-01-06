@@ -143,7 +143,7 @@ public class Juego {
 	}
 
 	/**
-	 * 
+	 * s
 	 * @return
 	 */
 	// getter del tablero por si se necesita en principal
