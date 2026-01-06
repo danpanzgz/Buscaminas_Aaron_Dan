@@ -7,38 +7,6 @@ import java.util.Random;
 
 public class Tablero {
 
-	public Casilla[][] getTablero() {
-		return tablero;
-	}
-
-	public void setTablero(Casilla[][] tablero) {
-		this.tablero = tablero;
-	}
-
-	public int getNumFilas() {
-		return numFilas;
-	}
-
-	public void setNumFilas(int numFilas) {
-		this.numFilas = numFilas;
-	}
-
-	public int getNumColumnas() {
-		return numColumnas;
-	}
-
-	public void setNumColumnas(int numColumnas) {
-		this.numColumnas = numColumnas;
-	}
-
-	public int getNumMinas() {
-		return numMinas;
-	}
-
-	public void setNumMinas(int numMinas) {
-		this.numMinas = numMinas;
-	}
-
 	private Casilla[][] tablero;
 	private int numFilas;
 	private int numColumnas;
@@ -72,7 +40,6 @@ public class Tablero {
 
 			if (!tablero[fila][columna].isMina()) {
 				tablero[fila][columna].setMina(true);
-				tablero[fila][columna].setBlanco(false);
 				minasColocadas++;
 			}
 		}
@@ -80,13 +47,7 @@ public class Tablero {
 		for (int i = 0; i < numFilas; i++) {
 			for (int j = 0; j < numColumnas; j++) {
 				if (!tablero[i][j].isMina()) {
-					int contador = contarMinasAlrededor(i, j);
-					tablero[i][j].setNumero(contador);
-					if (contador == 0) {
-						tablero[i][j].setBlanco(true);
-					} else {
-						tablero[i][j].setBlanco(false);
-					}
+                    tablero[i][j].setNumero(contarMinasAlrededor(i, j));
 				}
 			}
 		}
@@ -111,31 +72,63 @@ public class Tablero {
 		}
 		return contador;
 	}
+	
+	public Casilla[][] getTablero() {
+        return tablero;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
+    public int getNumFilas() {
+        return numFilas;
+    }
 
-		for (int i = 0; i < numFilas; i++) {
-			for (int j = 0; j < numColumnas; j++) {
-				Casilla casilla = tablero[i][j];
+    public int getNumColumnas() {
+        return numColumnas;
+    }
 
-				if (casilla.isBandera()) {
-				    builder.append("B ");
-				} else if (!casilla.isVisible()) {
-				    builder.append(". ");
-				} else if (casilla.isMina()) {
-				    builder.append("M ");
-				} else if (casilla.isBlanco()) {
-				    builder.append("  ");
-				} else {
-				    builder.append(casilla.getNumero() + " ");
-				}
-			}
-			builder.append("\n");
-		}
-		return builder.toString();
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
 
-	}
+        // Encabezado de columnas
+        builder.append("   "); 
+        for (int j = 0; j < numColumnas; j++) {
+            builder.append(String.format("%2d ", j));
+        }
+        builder.append("\n");
+
+        // Línea separadora
+        builder.append("   ");
+        for (int j = 0; j < numColumnas; j++) {
+            builder.append("---");
+        }
+        builder.append("\n");
+
+        // Filas con numeración
+        for (int i = 0; i < numFilas; i++) {
+            builder.append(String.format("%2d|", i));
+
+            for (int j = 0; j < numColumnas; j++) {
+                Casilla casilla = tablero[i][j];
+                String simbolo;
+
+                if (casilla.isBandera()) {
+                    simbolo = "B";
+                } else if (!casilla.isVisible()) {
+                    simbolo = ".";
+                } else if (casilla.isMina()) {
+                    simbolo = "M";
+                } else if (casilla.isBlanco()) {
+                    simbolo = " ";
+                } else {
+                    simbolo = String.valueOf(casilla.getNumero());
+                }
+
+                builder.append(String.format(" %s ", simbolo));
+            }
+            builder.append("\n");
+        }
+
+        return builder.toString();
+    }
 
 }

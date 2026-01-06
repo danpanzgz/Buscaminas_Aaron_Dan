@@ -13,53 +13,73 @@ public class Buscaminas {
 
 		Juego juego = new Juego(filas, columnas, minas);
 
-		System.out.println(juego);
-
 		boolean salir = false;
 
 		do {
 			System.out.println(juego);
-			
+
 			System.out.println("MENÚ OPCIONES:");
 			System.out.println("1. Descubrir ");
 			System.out.println("2. Poner bandera");
 			System.out.println("3. Quitar bandera");
 			System.out.println("0. Salir");
-			int opcion = Teclado.leerEntero("Seleccione opcion(0-3)");
+
+			int opcion = Teclado.leerEntero("Seleccione opcion(0-3): ");
 
 			if (opcion == 0) {
 				System.out.println("Saliendo...");
-				salir = true;
-			} else {
+				break;
+			}
 
-				int fila = Teclado.leerEntero("Indica la fila");
+			int fila;
+			int columna;
 
-				int columna = Teclado.leerEntero("Indica la columna");
+			// validar fila y columna
+			do {
+				fila = Teclado.leerEntero("Indica la fila (0-" + (filas - 1) + "): ");
+			} while (fila < 0 || fila >= filas);
 
-				switch (opcion) {
+			do {
+				columna = Teclado.leerEntero("Indica la columna (0-" + (columnas - 1) + "): ");
+			} while (columna < 0 || columna >= columnas);
 
-				case 1:
+			switch (opcion) {
+			case 1:
+				juego.descubrirCasilla(fila, columna);
 
-					boolean bomba = juego.descubrirCasilla(fila, columna);
-					if (bomba) {
-						System.out.println(juego);
-						System.out.println("!Has perdido!");
-						salir = true;
-					}
+				if (juego.isJuegoTerminado()) {
+				    System.out.println(juego);
 
-					break;
-				case 2:
-					juego.ponerBandera(fila, columna);
-					break;
-				case 3:
-					juego.quitarBandera(fila, columna);
-					break;
+				    if (juego.hasGanado()) {
+				        System.out.println("¡Has ganado!");
+				    } else {
+				        System.out.println("¡Has perdido!");
+				    }
 
-				default:
-					System.out.println("La opcion debe estar entre 0 y 3");
-					break;
-
+				    salir = true;
 				}
+				break;
+
+			case 2:
+				if (juego.ponerBandera(fila, columna)) {
+					System.out.println("Bandera colocada en (" + fila + "," + columna + ")");
+				} else {
+					System.out.println("No se puede poner bandera en esa casilla.");
+				}
+				break;
+
+			case 3:
+				 if (juego.quitarBandera(fila, columna)) {
+                     System.out.println("Bandera quitada en (" + fila + "," + columna + ")");
+                 } else {
+                     System.out.println("No hay bandera en esa casilla.");
+                 }
+                 break;
+
+			default:
+				System.out.println("La opcion debe estar entre 0 y 3");
+				break;
+
 			}
 		} while (!salir);
 
