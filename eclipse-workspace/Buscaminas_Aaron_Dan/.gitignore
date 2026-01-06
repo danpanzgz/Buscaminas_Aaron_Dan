@@ -1,21 +1,40 @@
-# Carpetas de compilación
+# ----------------------------
+# Java compiled files
+# ----------------------------
+*.class
 /bin/
 /out/
 
-# Configuración de Eclipse
+# ----------------------------
+# Eclipse / IDE files
+# ----------------------------
 .project
 .classpath
 .settings/
+/*.iml
+/.idea/
 
-# Archivos temporales o de logs
+# ----------------------------
+# Logs and temporary files
+# ----------------------------
 *.log
 *.tmp
 *.swp
 
-# Sistema operativo
+# ----------------------------
+# System files
+# ----------------------------
 .DS_Store
 Thumbs.db
 
-# Otros archivos de IDE (opcional)
-/*.iml
-/.idea/
+# ----------------------------
+# Backup files
+# ----------------------------
+*~ 
+*.bak
+
+# ----------------------------
+# Optional: ignore IntelliJ/VSCode config
+# ----------------------------
+.vscode/
+.idea/
