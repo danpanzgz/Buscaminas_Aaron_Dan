@@ -1,0 +1,9 @@
+# Eclipse y compilados
+bin/
+.settings/
+.classpath
+*.class
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
