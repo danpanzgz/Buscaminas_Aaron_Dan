@@ -1,3 +1,6 @@
+# Ignorar la carpeta workspace completa (si quieres)
+eclipse-workspace/
+
 # ----------------------------
 # Java compiled files
 # ----------------------------
