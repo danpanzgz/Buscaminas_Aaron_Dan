@@ -7,6 +7,38 @@ import java.util.Random;
 
 public class Tablero {
 
+	public Casilla[][] getTablero() {
+		return tablero;
+	}
+
+	public void setTablero(Casilla[][] tablero) {
+		this.tablero = tablero;
+	}
+
+	public int getNumFilas() {
+		return numFilas;
+	}
+
+	public void setNumFilas(int numFilas) {
+		this.numFilas = numFilas;
+	}
+
+	public int getNumColumnas() {
+		return numColumnas;
+	}
+
+	public void setNumColumnas(int numColumnas) {
+		this.numColumnas = numColumnas;
+	}
+
+	public int getNumMinas() {
+		return numMinas;
+	}
+
+	public void setNumMinas(int numMinas) {
+		this.numMinas = numMinas;
+	}
+
 	private Casilla[][] tablero;
 	private int numFilas;
 	private int numColumnas;
@@ -88,16 +120,16 @@ public class Tablero {
 			for (int j = 0; j < numColumnas; j++) {
 				Casilla casilla = tablero[i][j];
 
-				if (!casilla.isVisible()) {
-					builder.append(". ");
-				} else if (casilla.isBlanco()) {
-					builder.append("  ");
+				if (casilla.isBandera()) {
+				    builder.append("B ");
+				} else if (!casilla.isVisible()) {
+				    builder.append(". ");
 				} else if (casilla.isMina()) {
-					builder.append("M ");
-				} else if (casilla.isBandera()) {
-					builder.append("B ");
+				    builder.append("M ");
+				} else if (casilla.isBlanco()) {
+				    builder.append("  ");
 				} else {
-					builder.append(casilla.getNumero() + " ");
+				    builder.append(casilla.getNumero() + " ");
 				}
 			}
 			builder.append("\n");
